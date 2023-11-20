@@ -1,0 +1,42 @@
+class Archivos_texto:
+    def __init__(self, nombre_archivo):
+        self.nombre_archivo = nombre_archivo
+
+    def crear_archivo(self, contenido):
+        try:
+            with open(self.nombre_archivo, 'w') as archivo:
+                archivo.write(contenido)
+            return f"Archivo '{self.nombre_archivo}' creado correctamente."
+        except Exception as e:
+            return f"Error al crear el archivo: {str(e)}"
+
+    def escribir_archivo(self, contenido):
+        try:
+            with open(self.nombre_archivo, 'a') as archivo:
+                archivo.write(contenido)
+            return f"Contenido agregado al archivo '{self.nombre_archivo}' correctamente."
+        except Exception as e:
+            return f"Error al escribir en el archivo: {str(e)}"
+
+    def leer_archivo(self):
+        try:
+            with open(self.nombre_archivo, 'r') as archivo:
+                contenido = archivo.read()
+            return f"Contenido del archivo '{self.nombre_archivo}':\n{contenido}"
+        except Exception as e:
+            return f"Error al leer el archivo: {str(e)}"
+
+
+nombre_del_archivo = "ejemplo1.txt"
+manejo_archivos = Archivos_texto(nombre_del_archivo)
+
+# Crear archivo
+resultado_creacion = manejo_archivos.crear_archivo("Hola, este es un archivo de ejemplo.\n")
+
+resultado_escritura = manejo_archivos.escribir_archivo("Añadiendo más contenido al archivo.\n")
+
+resultado_lectura = manejo_archivos.leer_archivo()
+
+print(resultado_creacion)
+print(resultado_escritura)
+print(resultado_lectura)
